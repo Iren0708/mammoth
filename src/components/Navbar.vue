@@ -1,7 +1,7 @@
 <template>
   <header>
     <img
-      src="https://photos.google.com/photo/AF1QipNgNJoAM3Rki9T8FNGR_-tsFvrhlqr_B67lTG0g"
+      src="https://sun9-45.userapi.com/impg/gejmRih331tkDBmCeBsRhbRck1tXxE4S-Lc2mg/amuUopdZc60.jpg?size=2560x2560&quality=95&sign=a9b080db87e9d9d528594d4b0862008c&type=album"
       alt="Мамонт"
     />
     <nav>
