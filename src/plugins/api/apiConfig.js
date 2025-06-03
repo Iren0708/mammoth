@@ -3,10 +3,12 @@ export const API_BASE_URL = "http://localhost:3000/api"; // Базовый URL �
 // Общая функция для выполнения запросов
 export async function fetchData(url, options = {}) {
     console.log(url, options)
+    if(!!options.body && !options.body.includes('records')){ 
     options.body = JSON.stringify({
         records: [{
             fields: JSON.parse(options.body)
         }]})
+    }
         console.log(url, options)
     try {
         const response = await fetch(url, {

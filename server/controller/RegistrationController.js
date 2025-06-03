@@ -19,15 +19,7 @@ const registrationsTable = new Airtable({apiKey: auth_key})
 router.post('/', async (req, res) => {
     try {
     console.log(req.body)
-        const { FullName, Phone, Group, UserId } = req.body;
         
-     /*   if (!FullName || !Phone || !Group) {
-            return res.status(400).json({ 
-                success: false,
-                error: "Не заполнены обязательные поля" 
-            });
-        }
-*/
         const record = await registrationsTable.create(
 req.body            
         );

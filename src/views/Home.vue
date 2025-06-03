@@ -85,7 +85,7 @@ export default {
       FullName: this.registrationForm.fullName,
       Phone: this.registrationForm.phone,
       Group: this.registrationForm.group,
-      UserId: this.$store.state.user?.id === 3 ? 3 : null
+      UserId: this.$store.state.user?.id === 3 ? 3 : 0
     };
 
     const response = await RegistrationService.createRegistration(formData);

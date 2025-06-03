@@ -56,6 +56,14 @@ export default {
           this.formData.userId = 3;
         }
 
+        /*валидация
+        если нет заполнено поле то нужно выести алерт что поле не заполнено
+        по каждому полю создать if
+        if (this) 
+        if (this.поле === 1) {
+          if (!this.login || !this.password) {
+            return alert('Не заполнены обязательные поля');
+   */
         const response = await fetch('http://localhost:3010/api/registrations', {
           method: 'POST',
           headers: {
