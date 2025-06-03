@@ -55,8 +55,10 @@
 </template>
 
 <script>
+import RegistrationService from '../plugins/api/services/RegistrationService';
+
 export default {
-  name: 'HomePage',
+  name: 'Home',
   data() {
     return {
       showRegistrationForm: false,
@@ -78,36 +80,42 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      try {
-        const formData = {
-          ...this.registrationForm,
-          userId: this.$store.state.user?.id === 3 ? 3 : null
-        };
+  try {
+    const formData = {
+      FullName: this.registrationForm.fullName,
+      Phone: this.registrationForm.phone,
+      Group: this.registrationForm.group,
+      UserId: this.$store.state.user?.id === 3 ? 3 : null
+    };
 
-        const response = await fetch('http://localhost:3010/api/registrations', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        });
-
-        if (response.ok) {
-          alert('Ваша заявка принята! Мы свяжемся с вами в ближайшее время.');
-          this.showRegistrationForm = false;
-          this.registrationForm = {
-            fullName: '',
-            phone: '',
-            group: 'adult'
-          };
-        } else {
-          throw new Error('Ошибка при отправке заявки');
-        }
-      } catch (error) {
-        console.error('Ошибка:', error);
-        alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.');
-      }
+    const response = await RegistrationService.createRegistration(formData);
+    
+    // Проверяем структуру ответа
+    if (response?.success) {
+      alert('Ваша заявка принята! Мы свяжемся с вами в ближайшее время.');
+      this.showRegistrationForm = false;
+      this.resetForm();
+    } else {
+      // Если сервер вернул ошибку в response.error
+      const errorMessage = response.error || 'Неизвестная ошибка сервера';
+      throw new Error(errorMessage);
     }
+  } catch (error) {
+    console.error('Ошибка при отправке формы:', error);
+    
+    // Правильное отображение ошибки
+    let errorMessage = 'Произошла ошибка при отправке заявки';
+    
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    } else if (typeof error === 'object' && error !== null) {
+      // Пытаемся извлечь сообщение из объекта ошибки
+      errorMessage = error.message || JSON.stringify(error);
+    }
+    
+    alert(`Ошибка: ${errorMessage}`);
+  }
+},
   }
 }
 </script>

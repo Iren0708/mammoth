@@ -7,6 +7,7 @@ import express from "express";
 import Airtable from "airtable-node";
 import {reFormaterResponseData} from "../ServerDataFunction.js";
 
+
 /*
 * работа с роутом (уникальным путем коннтроллера)
 * UserController: получение информации о пользователях
@@ -109,41 +110,41 @@ router.get("/:userId", (req, res) => {
             }
         })
 })
-// Добавьте этот код в UserController.js перед export default router
-
-/*
-    description: Маршрут для создания новой записи на тренировку
-    router: http://localhost:3010/api/registrations
-    type: post
-*/
 const registrationsTable = new Airtable({apiKey: auth_key})
     .base(base_name)
-    .table("registrations");
+    .table("Registrations"); // Убедитесь в правильности названия таблицы
 
 router.post('/registrations', async (req, res) => {
     try {
-        const { fullName, phone, group, userId } = req.body;
+        const { FullName, Phone, Group, UserId } = req.body;
         
-        // Проверка обязательных полей
-        if (!fullName || !phone || !group) {
-            return res.status(400).json({ error: "Не заполнены обязательные поля" });
+        if (!FullName || !Phone || !Group) {
+            return res.status(400).json({ 
+                success: false,
+                error: "Не заполнены обязательные поля" 
+            });
         }
 
-        // Создание записи в Airtable
         const record = await registrationsTable.create({
-            "FullName": fullName,
-            "Phone": phone,
-            "Group": group,
-            "UserId": userId || null
+            FullName,
+            Phone,
+            Group,
+            UserId: UserId || null
+            // Убраны Status и CreatedAt
         });
 
         res.status(201).json({ 
+            success: true,
             message: "Запись создана успешно",
             record: reFormaterResponseData([record])
         });
     } catch (error) {
         console.error("Ошибка при создании записи:", error);
-        res.status(500).json({ error: "Ошибка при создании записи" });
+        res.status(500).json({ 
+            success: false,
+            error: error.message || "Ошибка при создании записи" 
+        });
     }
 });
+
 export default router;
