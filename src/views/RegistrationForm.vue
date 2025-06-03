@@ -44,7 +44,7 @@ export default {
         fullName: '',
         phone: '',
         group: 'adult',
-        userId: null
+        userId: 0
       }
     }
   },
@@ -61,7 +61,9 @@ export default {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(this.formData)
+          body: JSON.stringify({
+            records: [{
+                fields:this.formData}]})
         });
 
         if (response.ok) {

@@ -110,41 +110,6 @@ router.get("/:userId", (req, res) => {
             }
         })
 })
-const registrationsTable = new Airtable({apiKey: auth_key})
-    .base(base_name)
-    .table("Registrations"); // Убедитесь в правильности названия таблицы
 
-router.post('/registrations', async (req, res) => {
-    try {
-        const { FullName, Phone, Group, UserId } = req.body;
-        
-        if (!FullName || !Phone || !Group) {
-            return res.status(400).json({ 
-                success: false,
-                error: "Не заполнены обязательные поля" 
-            });
-        }
-
-        const record = await registrationsTable.create({
-            FullName,
-            Phone,
-            Group,
-            UserId: UserId || null
-            // Убраны Status и CreatedAt
-        });
-
-        res.status(201).json({ 
-            success: true,
-            message: "Запись создана успешно",
-            record: reFormaterResponseData([record])
-        });
-    } catch (error) {
-        console.error("Ошибка при создании записи:", error);
-        res.status(500).json({ 
-            success: false,
-            error: error.message || "Ошибка при создании записи" 
-        });
-    }
-});
 
 export default router;
