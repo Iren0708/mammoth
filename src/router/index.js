@@ -58,6 +58,11 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     redirect: '/'
+  },
+  {
+    path: '/blog/:slug',
+    name: 'BlogNewsOne',
+    component: () => import('../views/BlogNewsOne.vue')
   }
 ]
 

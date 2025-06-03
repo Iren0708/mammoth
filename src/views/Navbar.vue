@@ -11,12 +11,18 @@
         <li><router-link to="/contacts">Контакты</router-link></li>
       </ul>
     </nav>
+    <UserPanel />
   </header>
 </template>
 
 <script>
+import UserPanel from './UserPanel.vue' // Или правильный путь к вашему файлу
+
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  components: {
+    UserPanel
+  }
 }
 </script>
 
@@ -40,20 +46,15 @@ header a {
 }
 
 nav {
-  position: absolute;
-  color: white;
   display: flex;
-  justify-content: space-around;
-  place-self: anchor-center;
-  top: 10%;
-  z-index: 3;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 header img {
   width: 100px;
   height: 100px;
-  margin-right: auto;
-  object-fit: contain; /* Добавлено для правильного отображения лого */
+  object-fit: contain;
 }
 
 header {
@@ -64,9 +65,11 @@ header {
   right: 0;
   background-color: white;
   display: flex;
-  justify-content: space-around;
-  padding: 0 10%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
   box-shadow: 0 5px 10px;
+  z-index: 1000;
 }
 
 header ul {
@@ -82,30 +85,29 @@ header li {
 }
 
 header li:hover {
-  transform: scale(1.1);  
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    align-items: center;
     padding: 10px;
   }
   
   nav {
-    position: relative;
-    top: 0;
-    margin-top: 10px;
+    width: 100%;
+    margin: 10px 0;
   }
   
   header ul {
     flex-direction: column;
     gap: 0.5rem;
     font-size: 18px;
+    text-align: center;
+    width: 100%;
   }
   
   header img {
-    margin-right: 0;
     margin-bottom: 10px;
   }
 }

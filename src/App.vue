@@ -36,11 +36,12 @@
 import Navbar from './views/Navbar.vue';
 import Trainer from './views/Trainer.vue';
 import Price from './views/Price.vue';
+import UserPanel from './views/UserPanel.vue';
 
 export default {
   name: 'App',
   components: {
-    Navbar,Price,Trainer
+    Navbar,Price,Trainer,UserPanel,
   }
 }
 </script>

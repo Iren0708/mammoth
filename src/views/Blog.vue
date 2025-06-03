@@ -5,7 +5,12 @@
         <!-- Главная статья -->
         <article class="main-article">
           <div class="article-visual">
-            <div class="image-placeholder"></div>
+            <img 
+              src="https://sun9-54.userapi.com/impg/fsXrA9qkEONmL5xQmXQSNqvS3BwUdD8_rCJGNw/iBMZHqb5Qcs.jpg?size=1280x960&quality=95&sign=67cf0fc6079980e88d0353370e019a56&type=album" 
+              alt="Боксеры с медалями"
+              class="image-placeholder"
+              style="width:100%; height:100%; object-fit:cover;object-position: top;"
+            />
           </div>
           <div class="article-body">
             <h2>Наши боксеры завоевали 6 медалей</h2>
@@ -160,10 +165,9 @@
   .image-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, #f5f5f5, #e0e0e0) ;
+    background: linear-gradient(to right, #f5f5f5, #e0e0e0);
     display: flex;
     align-items: flex-end;
-    padding: 15px;
     box-sizing: border-box;
     color: #333;
     font-weight: bold;
@@ -187,7 +191,8 @@
   .card-link {
     display: inline-block;
     color: #b88218;
-    font-weight: 600;
+    font-weight: lighter;
+    
     text-decoration: none;
     margin-top: 15px;
     transition: color 0.3s;

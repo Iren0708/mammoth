@@ -1,0 +1,2 @@
+export let base_name = "appgffhdDjekR3F4T"; //Уникальный идентификатор БД
+export let auth_key = "patsICKS2WILieUgc.aeb65d3a64572707526d6eb0e2ef86e8bca58462a99bfd2b5dcd49c24980be3d"; //Уникальный ключ авторизации
