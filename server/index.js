@@ -14,7 +14,7 @@ app.use(express.json()); // Для обработки JSON-тела запрос
 
     const {default: UserController} = await import('./controller/UserController.js');
     app.use('/api/users', UserController);
-    
+
 
     app.listen(3000, () => { //Подключение сервера
         console.log('Server is running on port 3000');
